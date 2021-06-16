@@ -6,6 +6,7 @@ use crate::db::Connection;
 use crate::models::user::User;
 use crate::ressources::user_ressource::UserRessource;
 
+#[openapi]
 #[get("/")]
 pub fn index(conn: Connection) -> Result<Json<Vec<UserRessource>>, String> {
     use crate::schema::users::dsl::*;
