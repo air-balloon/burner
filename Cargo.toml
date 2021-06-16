@@ -1,0 +1,32 @@
+[package]
+name = "burner"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "air-balloon-burner"
+test = true
+bench = true
+path = "src/main.rs"
+
+[dependencies]
+# ENV
+dotenv = "0.15.0"
+
+# Webserver
+rocket = { version = "0.5.0-rc.1", features = ["json"] }
+
+# Database
+diesel = { version = "1.4.4", features = [
+    "mysql", "chrono", "uuid", "r2d2"
+]}
+diesel-derive-enum = { version = "1.1.1", features = ["mysql"] }
+chrono = "0.4"
+uuid = { version = "0.8.2", features = ["serde", "v4"] }
+
+# Serialization/Deserialization
+serde_json = "1.0.64"
+serde = "1.0.126"
+serde_derive = "1.0.126"
