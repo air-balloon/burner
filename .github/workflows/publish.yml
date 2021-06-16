@@ -7,7 +7,7 @@ jobs:
         name: Publish Docker image on edge tag
         environment:
             name: Push Docker image to Docker hub
-            url: https://api.air-balloon.cloud
+            url: https://burner.air-balloon.cloud
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
@@ -46,7 +46,7 @@ jobs:
               run: make docker-build
               env:
                 PLATFORM: "${{ matrix.platform }}"
-                IMAGE_TAG: "docker.io/airballoon/api:edge"
+                IMAGE_TAG: "docker.io/airballoon/burner:edge"
                 # Note the mode=max here
                 # More: https://github.com/moby/buildkit#--export-cache-options
                 # And: https://github.com/docker/buildx#--cache-tonametypetypekeyvalue
@@ -66,7 +66,7 @@ jobs:
             - name: Sign and push docker image
               uses: sudo-bot/action-docker-sign@latest
               with:
-                image-ref: "docker.io/airballoon/api:edge"
+                image-ref: "docker.io/airballoon/burner:edge"
                 private-key-id: "${{ secrets.DOCKER_PRIVATE_KEY_ID }}"
                 private-key: ${{ secrets.DOCKER_PRIVATE_KEY }}
                 private-key-passphrase: ${{ secrets.DOCKER_PRIVATE_KEY_PASSPHRASE }}

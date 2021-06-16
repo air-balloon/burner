@@ -44,7 +44,7 @@ jobs:
               run: make docker-build
               env:
                 PLATFORM: "${{ matrix.platform }}"
-                IMAGE_TAG: "docker.io/airballoon/api:${{ matrix.platform-tag }}-edge"
+                IMAGE_TAG: "docker.io/airballoon/burner:${{ matrix.platform-tag }}-edge"
                 # Note the mode=max here
                 # More: https://github.com/moby/buildkit#--export-cache-options
                 # And: https://github.com/docker/buildx#--cache-tonametypetypekeyvalue
