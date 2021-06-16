@@ -22,6 +22,7 @@ mod schema;
 
 #[launch]
 fn rocket() -> _ {
+    println!("Let the air heated up by the burner warm your could.");
     dotenv().ok();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
