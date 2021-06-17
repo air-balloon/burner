@@ -28,7 +28,6 @@ fn rocket() -> _ {
     dotenv().ok();
 
     let docker_conn = Docker::new();
-    //.expect("Impossible to connect to Docker");
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     rocket::build()
@@ -45,6 +44,7 @@ fn rocket() -> _ {
             "/",
             routes_with_openapi![
                 routes::api::index::index,
+                routes::api::index::get_users,
                 routes::api::index::docker_version
             ],
         )

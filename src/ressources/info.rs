@@ -8,3 +8,10 @@ pub struct VersionRessource {
     pub api_version: String,
     pub kernel_version: String,
 }
+
+#[derive(Serialize, JsonSchema)]
+#[serde(rename_all = "camelCase")]
+pub struct ApiRessource {
+    pub version: String,
+    pub message: String,
+}
