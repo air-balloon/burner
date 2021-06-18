@@ -13,6 +13,7 @@ CONTAINER_NETWORK ?= local_williamdeslocal
 CONTAINER_BIND_PORT ?= 8081
 # Internal port, keep it the same as CONTAINER_BIND_PORT or you will get confused
 ROCKET_PORT ?= 8081
+DOCKER_SOCKET ?= /var/run/docker.sock
 
 migrate:
 	@diesel migration run
@@ -44,4 +45,4 @@ docker-build:
 
 run:
 	@docker kill $(CONTAINER_NAME) || echo 'skip kill'
-	@docker run --name $(CONTAINER_NAME) --network $(CONTAINER_NETWORK) -t --rm --env-file ./.env -p $(CONTAINER_BIND_PORT):$(ROCKET_PORT) -e ROCKET_PORT=$(ROCKET_PORT) $(IMAGE_TAG)
+	@docker run --name $(CONTAINER_NAME) --network $(CONTAINER_NETWORK) -t --rm --env-file ./.env -p $(CONTAINER_BIND_PORT):$(ROCKET_PORT) -e ROCKET_PORT=$(ROCKET_PORT) -e ROCKET_ADDRESS="0.0.0.0" -v $(DOCKER_SOCKET):/var/run/docker.sock $(IMAGE_TAG)
