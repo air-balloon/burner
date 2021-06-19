@@ -11,3 +11,5 @@ CREATE TABLE users (
     last_log_in_at TIMESTAMP(6) NULL,
     language VARCHAR(10) NULL
 );
+
+ALTER TABLE `users` ADD UNIQUE `users_idx_unique_username` (`username`);

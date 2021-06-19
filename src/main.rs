@@ -18,6 +18,7 @@ use shiplift::Docker;
 
 mod db;
 mod models;
+mod requests;
 mod ressources;
 mod routes;
 mod schema;
@@ -44,7 +45,7 @@ fn rocket() -> _ {
             "/",
             routes_with_openapi![
                 routes::api::index::index,
-                routes::api::index::get_users,
+                routes::auth::register::auth_register,
                 routes::api::index::docker_version
             ],
         )
